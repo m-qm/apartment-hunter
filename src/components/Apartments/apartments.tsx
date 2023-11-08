@@ -3,7 +3,7 @@
 export type Apartment = {
     name: string;
     availability: string;
-    city:'Madrid' | 'Barcelona' | 'Lisbon' | 'Valencia';
+    city: 'Madrid' | 'Barcelona' | 'Lisbon';
     price: number;
     bedrooms: number;
     bathrooms: number;
@@ -14,7 +14,7 @@ export const apartments: Apartment[] = [
     {
         name: "Cozy Beachfront Apartment",
         availability: "2023-12-01",
-        city: "Valencia",
+        city: "Madrid",
         price: 3000,
         bedrooms: 2,
         bathrooms: 2,
@@ -23,7 +23,7 @@ export const apartments: Apartment[] = [
     {
         name: "Downtown Penthouse",
         availability: "2024-11-15",
-        city: "Valencia",
+        city: "Lisbon",
         price: 2790,
         bedrooms: 3,
         bathrooms: 2,
@@ -32,7 +32,7 @@ export const apartments: Apartment[] = [
     {
         name: "Historic Old Town Loft",
         availability: "2023-11-30",
-        city: "Valencia",
+        city: "Barcelona",
         price: 4920,
         bedrooms: 1,
         bathrooms: 1,
