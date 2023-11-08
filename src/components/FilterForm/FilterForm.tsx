@@ -17,6 +17,7 @@ interface FilterCriteria {
 }
 
 const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments }) => {
+  
   const [filters, setFilters] = useState<FilterCriteria>({
     city: '',
     priceRange: [0, 0], // Initialize with [0, 0]

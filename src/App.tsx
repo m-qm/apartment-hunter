@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/tailwind.css'; // Import Tailwind CSS
 import ApartmentList from './components/Apartments/ApartmentList.tsx';
 import FilterForm from './components/FilterForm/FilterForm.tsx';
+import Pagination from './components/Pagination/Pagination.tsx';
 
 import ResultCounter from './components/ResultCounter/ResultCounter.tsx';
 import { apartments } from './components/Apartments/apartments.tsx';
@@ -12,10 +13,28 @@ import {
 
 function App() {
   const [filteredApartments, setFilteredApartments] = useState(apartments);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
+  const apartmentsPerPage = 2;
+  const indexOfLastApartment = currentPage * apartmentsPerPage;
+  const indexOfFirstApartment = indexOfLastApartment - apartmentsPerPage;
+  const currentApartments = filteredApartments.slice(indexOfFirstApartment, indexOfLastApartment);
   const cities = [...new Set(apartments.map((apartment) => apartment.city))];
 
-  const handleFilter = (filters) => {
+  useEffect(() => {
+    setCurrentPage(1);
+    console.log(Math.ceil(filteredApartments.length / apartmentsPerPage), 'totalPages')
+    if(filteredApartments.length < apartmentsPerPage) {
+      setTotalPages(1);
+    }
+    else {
+      setTotalPages(Math.ceil(filteredApartments.length / apartmentsPerPage));
+    }
+
+  }, [filteredApartments]);
+
+  const handleFilter = (filters: any) => {
     const filteredResults = apartments.filter((apartment) => {
       return (
         (!filters.city || apartment.city === filters.city) &&
@@ -34,7 +53,10 @@ function App() {
       <h1 className="text-3xl font-bold mb-4">Apartment Hunter</h1>
       <FilterForm onFilter={handleFilter} cities={cities} apartments={apartments} />
       <ResultCounter filteredCount={filteredApartments.length} totalCount={apartments.length} />
-      <ApartmentList apartments={filteredApartments} />
+      <ApartmentList apartments={currentApartments} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} 
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </div>
   );
 }
