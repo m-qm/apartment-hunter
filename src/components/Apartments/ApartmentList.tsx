@@ -22,9 +22,18 @@ const ApartmentList: React.FC<ApartmentListProps> = ({ apartments }) => {
             <p>City: {apartment.city}</p>
           </div>
           <div className="flex justify-between">
+             <div>
+              <p>Bedrooms: {apartment.bedrooms}</p>
+            </div>
+            <div>
+              <p>Bathrooms: {apartment.bathrooms}</p>
+            </div>
+          </div>
+          <div className="flex justify-between">
             <div>
               <p>Price: {apartment.price}</p>
             </div>
+           
             <div>
               <p>Availability: {apartment.availability}</p>
             </div>

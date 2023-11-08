@@ -16,7 +16,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const apartmentsPerPage = 2;
+  const apartmentsPerPage = 6;
   const indexOfLastApartment = currentPage * apartmentsPerPage;
   const indexOfFirstApartment = indexOfLastApartment - apartmentsPerPage;
   const currentApartments = filteredApartments.slice(indexOfFirstApartment, indexOfLastApartment);

@@ -15,7 +15,7 @@ const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) 
 
     return (
         <nav>
-            <ul className="pagination flex justify-center">
+            <ul className="pagination flex justify-center mt-2">
                 {pageNumbers.map((number) => (
                     <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
                         <button className="page-link bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => onPageChange(number)}>

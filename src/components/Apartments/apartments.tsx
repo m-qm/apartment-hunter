@@ -120,7 +120,7 @@ export const apartments: Apartment[] = [
         picture: "https://www.datocms-assets.com/31543/1653405821-15.jpg?auto=format&dpr=2&fit=clip&h=384&q=60",
       },
     {
-        name: "Modern Barcelona Apartment",
+        name: "Modern Luxury Apartment",
         availability: "2023-12-01",
         city: "Barcelona",
         price: 3200,
@@ -129,12 +129,12 @@ export const apartments: Apartment[] = [
         picture: "https://www.datocms-assets.com/31543/1637833334-ukio-barcelona-torrent-de-lolla-189-l-21.jpg?auto=format&dpr=2&fit=clip&h=384&q=60",
     },
     {
-        name: "Rustic Lisbon Apartment",
+        name: "Rustic Cozy Apartment",
         availability: "2024-02-02",
         city: "Lisbon",
-        price: 2100,
+        price: 2920,
         bedrooms: 1,
-        bathrooms: 1,
+        bathrooms: 5,
         picture: "https://www.datocms-assets.com/31543/1654598529-stayukioavcasalribeiro6_0096.jpg?auto=format&dpr=2&fit=clip&h=384&q=60",
     },
 
