@@ -88,8 +88,8 @@ const handleCityFilter = (city: string) => {
             <button
               key={city}
               onClick={() => handleCityFilter(city)}
-              className={`bg-blue-500 text-white py-1 px-2 rounded-lg mr-2 ${
-                filters.city === city ? 'bg-blue-700' : ''
+              className={`bg-outer_space-500 text-white py-1 px-2 rounded-lg mr-2 ${
+                filters.city === city ? 'bg-outer_space-700' : ''
               }`}
             >
               {city}

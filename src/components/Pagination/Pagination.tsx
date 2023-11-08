@@ -1,12 +1,12 @@
 import React from 'react';
 
-type Props = {
+interface PaginationProps  {
     currentPage: number;
     totalPages: number;
     onPageChange: (page: number) => void;
 };
 
-const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
     const pageNumbers: number[] = [];
 
     for (let i = 1; i <= totalPages; i++) {
@@ -17,8 +17,8 @@ const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) 
         <nav>
             <ul className="pagination flex justify-center mt-2">
                 {pageNumbers.map((number) => (
-                    <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-                        <button className="page-link bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => onPageChange(number)}>
+                    <li key={number} className={`page-item ${currentPage === number ? 'active' : ''} flex justify-between mr-1`}>
+                        <button className="page-link bg-van_dyke-500 hover:bg-van_dyke-700 text-white font-bold py-2 px-4 rounded" onClick={() => onPageChange(number)}>
                             {number}
                         </button>
                     </li>
