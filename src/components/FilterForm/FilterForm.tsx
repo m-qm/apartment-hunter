@@ -9,7 +9,7 @@ interface FilterFormProps {
   apartments: Apartment[];
 }
 
-interface FilterCriteria {
+export interface FilterCriteria {
   city: string;
   priceRange: number[] | [number, number];
   availableNextMonth: boolean;
@@ -27,21 +27,6 @@ const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments })
 
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
-
-  // filter apartments by date 
-  const today = new Date();
-  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-  const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-
-  const filteredApartments = apartments?.filter((apartment) => {
-    const availableDate = new Date(apartment.availability);
-    return availableDate >= nextMonth;
-  }
-  );
-  filteredApartments.filter((apartment) => {
-    const availableDate = new Date(apartment.availability);
-    return availableDate >= nextWeek;
-  })
 
   useEffect(() => {
     const min = Math.min(...apartments.map((apartment) => apartment.price));

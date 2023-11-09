@@ -6,6 +6,8 @@ import Pagination from './components/Pagination/Pagination.tsx';
 
 import ResultCounter from './components/ResultCounter/ResultCounter.tsx';
 import { apartments } from './components/Apartments/apartments.tsx';
+import { FilterCriteria } from './components/FilterForm/FilterForm.tsx';
+
 import {
   isAvailableNextMonth,
   isAvailableNextWeek,
@@ -33,25 +35,19 @@ function App() {
 
   }, [filteredApartments]);
 
-  const handleFilter = (filters: any) => {
+  const handleFilter = (filters: FilterCriteria) => {
     const filteredResults = apartments?.filter((apartment) => {
       return (
         (!filters.city || apartment.city === filters.city) &&
         (!filters.priceRange[1] || apartment.price <= filters.priceRange[1]) &&
         (!filters.priceRange[0] || apartment.price >= filters.priceRange[0]) &&
-        // check is availablenext week or next month
-        (filters.availableNextWeek
-          ? isAvailableNextWeek(apartment.availability)
-          : true) &&
-        (filters.availableNextMonth
-          ? isAvailableNextMonth(apartment.availability)
-          : true)
-        
-      );
+        (!filters.availableNextWeek || isAvailableNextWeek(apartment.availability)) &&
+        (!filters.availableNextMonth || isAvailableNextMonth(apartment.availability))
+        );
     });
-  
     setFilteredApartments(filteredResults);
   };
+  
 
   return (
     <div className="container mx-auto p-4 text-cozy-ochre bg-gray-100 body-font font-groteske">
