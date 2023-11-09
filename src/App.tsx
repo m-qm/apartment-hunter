@@ -40,11 +40,17 @@ function App() {
         (!filters.city || apartment.city === filters.city) &&
         (!filters.priceRange[1] || apartment.price <= filters.priceRange[1]) &&
         (!filters.priceRange[0] || apartment.price >= filters.priceRange[0]) &&
-        (!filters.availableNextMonth || isAvailableNextMonth(apartment.availability)) &&
-        (!filters.availableNextWeek || isAvailableNextWeek(apartment.availability))
+        // check is availablenext week or next month
+        (filters.availableNextWeek
+          ? isAvailableNextWeek(apartment.availability)
+          : true) &&
+        (filters.availableNextMonth
+          ? isAvailableNextMonth(apartment.availability)
+          : true)
+        
       );
     });
-
+  
     setFilteredApartments(filteredResults);
   };
 

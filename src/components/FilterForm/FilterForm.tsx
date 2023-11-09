@@ -17,7 +17,7 @@ interface FilterCriteria {
 }
 
 const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments }) => {
-  
+
   const [filters, setFilters] = useState<FilterCriteria>({
     city: '',
     priceRange: [0, 0], // Initialize with [0, 0]
@@ -27,6 +27,23 @@ const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments })
 
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+
+  // filter apartments by date 
+  const today = new Date();
+  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+  console.log(nextWeek, 'nw')
+
+  const filteredApartments = apartments.filter((apartment) => {
+    const availableDate = new Date(apartment.availability);
+    return availableDate >= nextMonth;
+  }
+  );
+  filteredApartments.filter((apartment) => {
+    const availableDate = new Date(apartment.availability);
+    console.log(availableDate)
+    return availableDate >= nextWeek;
+  })
 
   useEffect(() => {
     const min = Math.min(...apartments.map((apartment) => apartment.price));
@@ -42,7 +59,8 @@ const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments })
     }));
   }, [apartments]);
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {    const { name, type } = event.target;
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, type } = event.target;
 
     if (type === 'checkbox') {
       const { checked } = event.target as HTMLInputElement;
@@ -59,15 +77,15 @@ const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments })
     }
   };
 
-const handleCityFilter = (city: string) => {
-  if (filters.city === city) {
-    // If the clicked city is the same as the currently selected city, clear the city filter
-    setFilters({ ...filters, city: '' });
-  } else {
-    // If the clicked city is different, set it as the new city filter
-    setFilters({ ...filters, city });
-  }
-};
+  const handleCityFilter = (city: string) => {
+    if (filters.city === city) {
+      // If the clicked city is the same as the currently selected city, clear the city filter
+      setFilters({ ...filters, city: '' });
+    } else {
+      // If the clicked city is different, set it as the new city filter
+      setFilters({ ...filters, city });
+    }
+  };
 
   const handlePriceRangeChange = (priceRange: any) => {
     setFilters({ ...filters, priceRange });
@@ -88,9 +106,8 @@ const handleCityFilter = (city: string) => {
             <button
               key={city}
               onClick={() => handleCityFilter(city)}
-              className={`bg-outer_space-500 text-white py-1 px-2 rounded-lg mr-2 ${
-                filters.city === city ? 'bg-outer_space-700' : ''
-              }`}
+              className={`bg-outer_space-500 text-white py-1 px-2 rounded-lg mr-2 ${filters.city === city ? 'bg-outer_space-700' : ''
+                }`}
             >
               {city}
             </button>
@@ -109,13 +126,13 @@ const handleCityFilter = (city: string) => {
           </div>
         </div>
         <div className="mb-2">
-        <Slider
-          min={minPrice}
-          max={maxPrice}
-          value={filters.priceRange}
-          onChange={handlePriceRangeChange}
-          range
-        />
+          <Slider
+            min={minPrice}
+            max={maxPrice}
+            value={filters.priceRange}
+            onChange={handlePriceRangeChange}
+            range
+          />
         </div>
       </div>
       <div className="mb-2">

@@ -13,7 +13,7 @@ export type Apartment = {
 export const apartments: Apartment[] = [
     {
         name: "Cozy Beachfront Apartment",
-        availability: "2023-12-01",
+        availability: "2023-11-01",
         city: "Madrid",
         price: 3000,
         bedrooms: 2,
@@ -22,7 +22,7 @@ export const apartments: Apartment[] = [
     },
     {
         name: "Downtown Penthouse",
-        availability: "2024-11-15",
+        availability: "2023-11-30",
         city: "Lisbon",
         price: 2790,
         bedrooms: 3,
