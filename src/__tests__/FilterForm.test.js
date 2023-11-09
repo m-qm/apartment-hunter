@@ -1,46 +1,43 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import FilterForm from '../components/FilterForm/FilterForm';
 
-describe('FilterForm component', () => {
-  it('renders the component', () => {
-    render(
-      <FilterForm
-        onFilter={() => {}}
-        cities={['City1', 'City2']}
-        apartments={[]}
-      />
-    );
+const mockOnFilter = jest.fn();
+const mockCities = ['Madrid', 'Barcelona', 'Lisbon'];
+const mockApartments = [
+  {
+    name: 'Cozy Beachfront Apartment',
+    availability: '2023-11-01',
+    city: 'Madrid',
+    price: 3000,
+    bedrooms: 2,
+    bathrooms: 2,
+    picture:
+      'https://www.datocms-assets.com/31543/1698745653-02.jpg?auto=format&dpr=2&fit=clip&h=384&q=60',
+  },
+  {
+    name: 'Downtown Penthouse',
+    availability: '2023-11-30',
+    city: 'Lisbon',
+    price: 2790,
+    bedrooms: 3,
+    bathrooms: 2,
+    picture:
+      'https://www.datocms-assets.com/31543/1693827928-07.jpg?auto=format&dpr=2&fit=clip&h=384&q=60',
+  },
+];
 
-    // Add your assertions here to check if the component is rendered correctly.
-    // For example:
-    expect(screen.getByText('Filter Apartments')).toBeInTheDocument();
-  });
+beforeEach(() => {
+  render(
+    <FilterForm onFilter={mockOnFilter} cities={mockCities} apartments={mockApartments} />
+  );
+});
 
-  it('handles city filter correctly', () => {
-    // You can write test cases to check if the city filter works as expected.
-    // For example, simulate a click on a city button and check if the filter is set.
-    // Use fireEvent to simulate user interactions.
-    render(
-      <FilterForm
-        onFilter={() => {}}
-        cities={['City1', 'City2']}
-        apartments={[]}
-      />
-    );
-
-    const cityButton = screen.getByText('City1');
-    fireEvent.click(cityButton);
-
-    // Add assertions to check if the filter state is updated.
-    // For example, expect that the city filter is set to 'City1'.
-
-    const cityButton2 = screen.getByText('City2');
-    fireEvent.click(cityButton2);
-    
-
-
-  });
-
-  // Write more test cases for other filter options.
+it('renders the component with default values', () => {
+  expect(screen.getByText('Filter Apartments')).toBeInTheDocument();
+  expect(screen.getByText('City:')).toBeInTheDocument();
+  expect(screen.getByText('Price Range:')).toBeInTheDocument();
+  expect(screen.getByText('Available Next Month')).toBeInTheDocument();
+  expect(screen.getByText('Available Next Week')).toBeInTheDocument();
+  expect(screen.getByText('Apply Filters')).toBeInTheDocument();
 });

@@ -32,16 +32,14 @@ const FilterForm: React.FC<FilterFormProps> = ({ onFilter, cities, apartments })
   const today = new Date();
   const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
   const nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
-  console.log(nextWeek, 'nw')
 
-  const filteredApartments = apartments.filter((apartment) => {
+  const filteredApartments = apartments?.filter((apartment) => {
     const availableDate = new Date(apartment.availability);
     return availableDate >= nextMonth;
   }
   );
   filteredApartments.filter((apartment) => {
     const availableDate = new Date(apartment.availability);
-    console.log(availableDate)
     return availableDate >= nextWeek;
   })
 

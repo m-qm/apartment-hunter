@@ -6,7 +6,7 @@ import FilterForm from '../components/FilterForm/FilterForm.tsx';
 describe('App component', () => {
   it('renders the component', () => {
     render(<App />);
-    expect(screen.getByText('Apartment Listings')).toBeInTheDocument();
+    expect(screen.getByText('Apartment Hunter')).toBeInTheDocument();
   });
 
   it('filters apartments based on FilterForm', () => {

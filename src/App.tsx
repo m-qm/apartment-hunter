@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     setCurrentPage(1);
-    console.log(Math.ceil(filteredApartments.length / apartmentsPerPage), 'totalPages')
     if(filteredApartments.length < apartmentsPerPage) {
       setTotalPages(1);
     }
@@ -35,7 +34,7 @@ function App() {
   }, [filteredApartments]);
 
   const handleFilter = (filters: any) => {
-    const filteredResults = apartments.filter((apartment) => {
+    const filteredResults = apartments?.filter((apartment) => {
       return (
         (!filters.city || apartment.city === filters.city) &&
         (!filters.priceRange[1] || apartment.price <= filters.priceRange[1]) &&
